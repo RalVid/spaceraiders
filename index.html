@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Space Rail Shooter</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div id="scoreboard">
+    <div>Level: <span id="level">1</span></div>
+    <div>Score: <span id="score">0</span></div>
+    <div>High Score: <span id="highscore">0</span></div>
+    <div>Health: <span id="health">5</span></div>
+  </div>
+  <div id="powerups">
+    <div><strong>ACTIVE POWER-UPS</strong></div>
+    <div id="active-powerups"></div>
+  </div>
+  <div id="startscreen" class="overlay">
+    <div style="font-size:48px; color:#4af; margin-bottom:20px;"><strong>SPACE RAIDERS</strong></div>
+    <div>Use Arrow Keys or WASD to move</div>
+    <div>Press Space or Z to shoot</div>
+    <br><div style="color:#ff0;">Press Enter to Start</div>
+  </div>
+  <div id="gameover" class="overlay">
+    <div style="font-size:48px; color:#f44; margin-bottom:20px;"><strong>GAME OVER</strong></div>
+    <div>Your Score: <span id="finalscore" style="color:#ff0">0</span></div>
+    <div>High Score: <span id="finalhighscore" style="color:#ff0">0</span></div>
+    <br><div style="color:#4af;">Press Enter to Restart</div>
+  </div>
+  <div id="levelup">LEVEL UP!</div>
+  <canvas id="gameCanvas" width="480" height="640"></canvas>
+  
+  <div id="shootButton">🔫</div>
+  <script src="script.js"></script>
+</body>
+</html>

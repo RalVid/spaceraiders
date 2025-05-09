@@ -1,0 +1,34 @@
+body { margin:0; overflow:hidden; background:#000; display:flex; justify-content:center; align-items:center; height:100vh; font-family:'Audiowide', monospace; }
+    canvas { background:radial-gradient(ellipse at center, #0a0e24 0%, #000000 100%); border:2px solid #4a6da7; box-shadow:0 0 20px #4a6da7; }
+    #scoreboard { position:absolute; top:10px; left:10px; color:#fff; font-size:16px; text-shadow:0 0 5px #4a6da7; display:none; }
+    #powerups { position:absolute; top:10px; right:10px; color:#fff; font-size:16px; text-shadow:0 0 5px #4a6da7; display:none; }
+    .overlay { position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:#fff; font-size:24px; text-align:center; text-shadow:0 0 10px #4a6da7; }
+    #startscreen, #gameover { display:none; }
+    #levelup { display:none; position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); color:#ff0; font-size:32px; text-shadow:0 0 15px #ff0; animation:flash 0.5s step-end infinite alternate; }
+    @keyframes flash { 0% { opacity:1; } 100% { opacity:0.5; } }
+    .powerup-item { margin: 4px 0; }
+    .powerup-time { color: #4af; }
+    @import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+/* Touch controls */
+#gameCanvas {
+  touch-action: none;
+}
+
+#shootButton {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 64px;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #fff;
+  user-select: none;
+  touch-action: none;
+  z-index: 100;
+}
