@@ -740,8 +740,7 @@ const canvas = document.getElementById('gameCanvas');
         gameOver=true;
         clearInterval(enemyInterval);
         document.getElementById('finalscore').textContent=scoreboard.score;
-        document.getElementById('finalhighscore').textContent=scoreboard.highscore;
-        sounds.bgMusic.pause();
+        document.getElementById('finalhighscore').textContent=scoreboard.highscore;        
         gameover.style.display='block';
       }
     }
