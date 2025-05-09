@@ -65,13 +65,13 @@ const canvas = document.getElementById('gameCanvas');
 
     function startGame(){ 
       gameStarted=true; 
-      resetGame(); 
-      // ——— Start BGM on first game start ———
-      sounds.bgMusic.currentTime = 0;
-      sounds.bgMusic.play();    
+      resetGame();     
       scoreboardDiv.style.display='block'; 
       powerupsDiv.style.display='block'; 
       startscreen.style.display='none'; 
+      // ——— Start BGM on first game start ———
+      sounds.bgMusic.currentTime = 0;
+      sounds.bgMusic.play();
     }
     
     function resetGame(){
@@ -738,6 +738,7 @@ const canvas = document.getElementById('gameCanvas');
       // Game over check
       if(scoreboard.health<=0){
         gameOver=true;
+        sounds.bgMusic.pause();
         clearInterval(enemyInterval);
         document.getElementById('finalscore').textContent=scoreboard.score;
         document.getElementById('finalhighscore').textContent=scoreboard.highscore;        
