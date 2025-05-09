@@ -634,8 +634,7 @@ const canvas = document.getElementById('gameCanvas');
             x: enemies[i].x,
             y: canvas.height,
             frame: 0
-          });
-          playSound(sounds.explosion);
+          });          
           
           enemies.splice(i,1);
         }
