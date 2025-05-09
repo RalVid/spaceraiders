@@ -878,6 +878,21 @@ const canvas = document.getElementById('gameCanvas');
     }
     
     function updatePlayer(){
+      if (Math.hypot(joyX, joyY) > 0) {
+          // move by joystick
+          player.x += joyX * player.speed;
+          player.y += joyY * player.speed;
+      } else {
+          // existing keyboard controls
+          if (keys['ArrowUp'] || keys['w'])    player.y -= player.speed;
+          if (keys['ArrowDown']|| keys['s'])    player.y += player.speed;
+          if (keys['ArrowLeft']|| keys['a'])    player.x -= player.speed;
+          if (keys['ArrowRight']||keys['d'])    player.x += player.speed;
+      }
+      // clamp to canvas
+      player.x = Math.max(player.size/2, Math.min(canvas.width  - player.size/2, player.x));
+      player.y = Math.max(player.size/2, Math.min(canvas.height - player.size/2, player.y));
+      
       if(keys['ArrowUp']||keys['w']) player.y-=player.speed;
       if(keys['ArrowDown']||keys['s']) player.y+=player.speed;
       if(keys['ArrowLeft']||keys['a']) player.x-=player.speed;
