@@ -737,11 +737,11 @@ const canvas = document.getElementById('gameCanvas');
       
       // Game over check
       if(scoreboard.health<=0){
-        gameOver=true;
-        sounds.bgMusic.pause();
+        gameOver=true;        
         clearInterval(enemyInterval);
         document.getElementById('finalscore').textContent=scoreboard.score;
         document.getElementById('finalhighscore').textContent=scoreboard.highscore;        
+        sounds.bgMusic.pause();        
         gameover.style.display='block';
       }
     }
