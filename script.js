@@ -741,6 +741,7 @@ const canvas = document.getElementById('gameCanvas');
         clearInterval(enemyInterval);
         document.getElementById('finalscore').textContent=scoreboard.score;
         document.getElementById('finalhighscore').textContent=scoreboard.highscore;
+        sounds.bgMusic.pause();
         gameover.style.display='block';
       }
     }
