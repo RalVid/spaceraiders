@@ -56,7 +56,24 @@ const canvas = document.getElementById('gameCanvas');
       speed:Math.random()*3+1,
       color: `hsl(${Math.random()*60 + 200}, 80%, ${Math.random()*30 + 50}%)`
     }));
+
+    // ——— Fullscreen Helper ———
+    function openFullscreen() {
+      const el = document.documentElement;
+      if (el.requestFullscreen)        el.requestFullscreen();
+      else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+      else if (el.msRequestFullscreen)     el.msRequestFullscreen();
+    }
+    // ——— End Fullscreen Helper ———
     
+    // Touch‐start listener (only once) to open fullscreen + start/reset
+    canvas.addEventListener('touchstart', e => {
+      e.preventDefault();
+      openFullscreen();
+      if (!gameStarted)       startGame();
+      else if (gameOver)      resetGame();
+    }, { once: true });
+
     // Input handling
     let keys={}, canShoot=true, enemyInterval;
     let shieldPulse = 0;
