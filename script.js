@@ -931,6 +931,16 @@ canvas.addEventListener('touchmove', e => {
   player.y = touch.clientY - rect.top;
 });
 
+// Start game for mobiles
+canvas.addEventListener('touchstart', e => {
+  e.preventDefault();
+  if (!gameStarted) {
+    startGame();
+  } else if (gameOver) {
+    resetGame();
+  }
+});
+
 // Touch to shoot via button
 shootBtn.addEventListener('touchstart', e => {
   e.preventDefault();
