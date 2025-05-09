@@ -925,14 +925,57 @@ const canvas = document.getElementById('gameCanvas');
 // ——— Touch Controls for Mobile ———
 const shootBtn = document.getElementById('shootButton');
 
-// Direct ship movement with touch
-canvas.addEventListener('touchmove', e => {
+// ——— Virtual Joystick Setup ———
+const joystick    = document.getElementById('joystick');
+const joystickThumb = document.getElementById('joystick-thumb');
+let joystickId   = null;
+let joyX = 0, joyY = 0;
+
+function updateJoystick(touch) {
+  const rect = joystick.getBoundingClientRect();
+  const dx   = touch.clientX - (rect.left + rect.width/2);
+  const dy   = touch.clientY - (rect.top  + rect.height/2);
+  const max  = rect.width/2;
+  const dist = Math.hypot(dx, dy);
+  const angle= Math.atan2(dy, dx);
+  const limited = Math.min(dist, max);
+  // move thumb
+  const tx = Math.cos(angle) * limited;
+  const ty = Math.sin(angle) * limited;
+  joystickThumb.style.transform = `translate(${tx}px, ${ty}px)`;
+  // normalized direction vector
+  joyX = tx / max;
+  joyY = ty / max;
+}
+
+joystick.addEventListener('touchstart', e => {
   e.preventDefault();
-  const touch = e.touches[0];
-  const rect = canvas.getBoundingClientRect();
-  player.x = touch.clientX - rect.left;
-  player.y = touch.clientY - rect.top;
+  const t = e.changedTouches[0];
+  joystickId = t.identifier;
+  updateJoystick(t);
 });
+
+joystick.addEventListener('touchmove', e => {
+  e.preventDefault();
+  for (const t of e.changedTouches) {
+    if (t.identifier === joystickId) {
+      updateJoystick(t);
+      break;
+    }
+  }
+});
+
+joystick.addEventListener('touchend', e => {
+  for (const t of e.changedTouches) {
+    if (t.identifier === joystickId) {
+      joystickId = null;
+      joyX = joyY = 0;
+      joystickThumb.style.transform = 'translate(-50%, -50%)';
+      break;
+    }
+  }
+});
+// ——— End Joystick Setup ———
 
 // Start game for mobiles
 canvas.addEventListener('touchstart', e => {
